@@ -11,9 +11,9 @@ namespace UnitTestProject
         {
             return new Matrix3
                 (
-                    mat.m11, mat.m21, mat.m31,
-                    mat.m12, mat.m22, mat.m32,
-                    mat.m13, mat.m23, mat.m33
+                    mat.M00, mat.M10, mat.M20,
+                    mat.M01, mat.M11, mat.M21,
+                    mat.M02, mat.M12, mat.M22
                 );
         }
 
@@ -21,11 +21,44 @@ namespace UnitTestProject
         {
             return new Matrix4
                 (
-                    mat.m11, mat.m21, mat.m31, mat.m41,
-                    mat.m12, mat.m22, mat.m32, mat.m42,
-                    mat.m13, mat.m23, mat.m33, mat.m43,
-                    mat.m14, mat.m24, mat.m34, mat.m44
+                    mat.M00, mat.M10, mat.M20, mat.M30,
+                    mat.M01, mat.M11, mat.M21, mat.M31,
+                    mat.M02, mat.M12, mat.M22, mat.M32,
+                    mat.M03, mat.M13, mat.M23, mat.M33
                 );
+        }
+
+        string Matrix3ToString(Matrix3 mat)
+        {
+            string result = mat.M00 + " " + mat.M01 + " " + mat.M02 + "\n" +
+                            mat.M10 + " " + mat.M11 + " " + mat.M12 + "\n" +
+                            mat.M20 + " " + mat.M21 + " " + mat.M22;
+
+            return result;
+        }
+
+        string Matrix4ToString(Matrix4 mat)
+        {
+            string result = mat.M00 + " " + mat.M01 + " " + mat.M02 + " " + mat.M03 + "\n" +
+                            mat.M10 + " " + mat.M11 + " " + mat.M12 + " " + mat.M13 + "\n" +
+                            mat.M20 + " " + mat.M21 + " " + mat.M22 + " " + mat.M23 + "\n" +
+                            mat.M30 + " " + mat.M31 + " " + mat.M32 + " " + mat.M33;
+
+            return result;
+        }
+        string Vector2ToString(Vector2 vec)
+        {
+            return vec.X + " " + vec.Y;
+        }
+
+        string Vector3ToString(Vector3 vec)
+        {
+            return vec.X + " " + vec.Y + " " + vec.Z;
+        }
+
+        string Vector4ToString(Vector4 vec)
+        {
+            return vec.X + " " + vec.Y + " " + vec.Z + " " + vec.W;
         }
 
         bool compare(float a, float b, float tolerance = DEFAULT_TOLERANCE)
@@ -46,7 +79,7 @@ namespace UnitTestProject
 
         bool compare(Vector4 a, Vector4 b, float tolerance = DEFAULT_TOLERANCE)
         {
-            if (Math.Abs(a.X - b.X  ) > tolerance ||
+            if (Math.Abs(a.X - b.X) > tolerance ||
                 Math.Abs(a.Y - b.Y) > tolerance ||
                 Math.Abs(a.Z - b.Z) > tolerance ||
                 Math.Abs(a.W - b.W) > tolerance)
@@ -56,19 +89,19 @@ namespace UnitTestProject
 
         bool compare(Matrix3 a, Matrix3 b, float tolerance = DEFAULT_TOLERANCE)
         {
-            if (Math.Abs(a.m11 - b.m11) > tolerance || Math.Abs(a.m12 - b.m12) > tolerance || Math.Abs(a.m13 - b.m13) > tolerance ||
-                Math.Abs(a.m21 - b.m21) > tolerance || Math.Abs(a.m22 - b.m22) > tolerance || Math.Abs(a.m23 - b.m23) > tolerance ||
-                Math.Abs(a.m31 - b.m31) > tolerance || Math.Abs(a.m32 - b.m32) > tolerance || Math.Abs(a.m33 - b.m33) > tolerance)
+            if (Math.Abs(a.M00 - b.M00) > tolerance || Math.Abs(a.M01 - b.M01) > tolerance || Math.Abs(a.M02 - b.M02) > tolerance ||
+                Math.Abs(a.M10 - b.M10) > tolerance || Math.Abs(a.M11 - b.M11) > tolerance || Math.Abs(a.M12 - b.M12) > tolerance ||
+                Math.Abs(a.M20 - b.M20) > tolerance || Math.Abs(a.M21 - b.M21) > tolerance || Math.Abs(a.M22 - b.M22) > tolerance)
                 return false;
             return true;
         }
 
         bool compare(Matrix4 a, Matrix4 b, float tolerance = DEFAULT_TOLERANCE)
         {
-            if (Math.Abs(a.m11 - b.m11) > tolerance || Math.Abs(a.m12 - b.m12) > tolerance || Math.Abs(a.m13 - b.m13) > tolerance || Math.Abs(a.m14 - b.m14) > tolerance ||
-                Math.Abs(a.m21 - b.m21) > tolerance || Math.Abs(a.m22 - b.m22) > tolerance || Math.Abs(a.m23 - b.m23) > tolerance || Math.Abs(a.m24 - b.m24) > tolerance ||
-                Math.Abs(a.m31 - b.m31) > tolerance || Math.Abs(a.m32 - b.m32) > tolerance || Math.Abs(a.m33 - b.m33) > tolerance || Math.Abs(a.m34 - b.m34) > tolerance ||
-                Math.Abs(a.m41 - b.m41) > tolerance || Math.Abs(a.m42 - b.m42) > tolerance || Math.Abs(a.m43 - b.m43) > tolerance || Math.Abs(a.m44 - b.m44) > tolerance)
+            if (Math.Abs(a.M00 - b.M00) > tolerance || Math.Abs(a.M01 - b.M01) > tolerance || Math.Abs(a.M02 - b.M02) > tolerance || Math.Abs(a.M03 - b.M03) > tolerance ||
+                Math.Abs(a.M10 - b.M10) > tolerance || Math.Abs(a.M11 - b.M11) > tolerance || Math.Abs(a.M12 - b.M12) > tolerance || Math.Abs(a.M13 - b.M13) > tolerance ||
+                Math.Abs(a.M20 - b.M20) > tolerance || Math.Abs(a.M21 - b.M21) > tolerance || Math.Abs(a.M22 - b.M22) > tolerance || Math.Abs(a.M23 - b.M23) > tolerance ||
+                Math.Abs(a.M30 - b.M30) > tolerance || Math.Abs(a.M31 - b.M31) > tolerance || Math.Abs(a.M32 - b.M32) > tolerance || Math.Abs(a.M33 - b.M33) > tolerance)
                 return false;
             return true;
         }
@@ -79,8 +112,9 @@ namespace UnitTestProject
             Vector3 v3a = new Vector3(13.5f, -48.23f, 862);
             Vector3 v3b = new Vector3(5, 3.99f, -12);
             Vector3 v3c = v3a + v3b;
+            Vector3 expected = new Vector3(18.5f, -44.24f, 850);
 
-            Assert.IsTrue(compare(new Vector3(18.5f, -44.24f, 850), v3c));
+            Assert.IsTrue(compare(expected, v3c), "Expected: " + Vector3ToString(expected) + "\n" + "Received: " + Vector3ToString(v3c));
         }
 
         [TestMethod]
@@ -89,8 +123,8 @@ namespace UnitTestProject
             Vector4 v4a = new Vector4(13.5f, -48.23f, 862, 0);
             Vector4 v4b = new Vector4(5, 3.99f, -12, 1);
             Vector4 v4c = v4a + v4b;
-
-            Assert.IsTrue(compare(new Vector4(18.5f, -44.24f, 850, 1), v4c));
+            Vector4 expected = new Vector4(18.5f, -44.24f, 850, 1);
+            Assert.IsTrue(compare(expected, v4c), "Expected: " + Vector4ToString(expected) + "\n" + "Received: " + Vector4ToString(v4c));
         }
 
         [TestMethod]
@@ -99,8 +133,9 @@ namespace UnitTestProject
             Vector3 v3a = new Vector3(13.5f, -48.23f, 862);
             Vector3 v3b = new Vector3(5, 3.99f, -12);
             Vector3 v3c = v3a - v3b;
+            Vector3 expected = new Vector3(8.5f, -52.22f, 874);
 
-            Assert.IsTrue(compare(new Vector3(8.5f, -52.22f, 874), v3c));
+            Assert.IsTrue(compare(new Vector3(8.5f, -52.22f, 874), v3c), "Expected: " + Vector3ToString(expected) + "\n" + "Received: " + Vector3ToString(v3c));
         }
 
         [TestMethod]
@@ -109,8 +144,8 @@ namespace UnitTestProject
             Vector4 v4a = new Vector4(13.5f, -48.23f, 862, 0);
             Vector4 v4b = new Vector4(5, 3.99f, -12, 1);
             Vector4 v4c = v4a - v4b;
-
-            Assert.IsTrue(compare(new Vector4(8.5f, -52.22f, 874, -1), v4c));
+            Vector4 expected = new Vector4(8.5f, -52.22f, 874, -1);
+            Assert.IsTrue(compare(new Vector4(8.5f, -52.22f, 874, -1), v4c), "Expected: " + Vector4ToString(expected) + "\n" + "Received: " + Vector4ToString(v4c));
         }
 
         [TestMethod]
@@ -118,8 +153,8 @@ namespace UnitTestProject
         {
             Vector3 v3a = new Vector3(13.5f, -48.23f, 862);
             Vector3 v3c = v3a * 0.256f;
-
-            Assert.IsTrue(compare(new Vector3(3.45600008965f, -12.3468809128f, 220.672012329f), v3c));
+            Vector3 expected = new Vector3(3.45600008965f, -12.3468809128f, 220.672012329f);
+            Assert.IsTrue(compare(new Vector3(3.45600008965f, -12.3468809128f, 220.672012329f), v3c), "Expected: " + Vector3ToString(expected) + "\n" + "Received: " + Vector3ToString(v3c));
         }
 
         [TestMethod]
@@ -127,8 +162,8 @@ namespace UnitTestProject
         {
             Vector4 v4a = new Vector4(13.5f, -48.23f, 862, 0);
             Vector4 v4c = v4a * 4.89f;
-
-            Assert.IsTrue(compare(new Vector4(66.0149993896f, -235.844696045f, 4215.1796875f, 0), v4c));
+            Vector4 expected = new Vector4(66.0149993896f, -235.844696045f, 4215.1796875f, 0);
+            Assert.IsTrue(compare(new Vector4(66.0149993896f, -235.844696045f, 4215.1796875f, 0), v4c), "Expected: " + Vector4ToString(expected) + "\n" + "Received: " + Vector4ToString(v4c));
         }
 
         [TestMethod]
@@ -136,8 +171,8 @@ namespace UnitTestProject
         {
             Vector3 v3a = new Vector3(13.5f, -48.23f, 862);
             Vector3 v3c = 0.256f * v3a;
-
-            Assert.IsTrue(compare(new Vector3(3.45600008965f, -12.3468809128f, 220.672012329f), v3c));
+            Vector3 expected = new Vector3(3.45600008965f, -12.3468809128f, 220.672012329f);
+            Assert.IsTrue(compare(new Vector3(3.45600008965f, -12.3468809128f, 220.672012329f), v3c), "Expected: " + Vector3ToString(expected) + "\n" + "Received: " + Vector3ToString(v3c));
         }
 
         [TestMethod]
@@ -145,8 +180,8 @@ namespace UnitTestProject
         {
             Vector4 v4a = new Vector4(13.5f, -48.23f, 862, 0);
             Vector4 v4c = 4.89f * v4a;
-
-            Assert.IsTrue(compare(new Vector4(66.0149993896f, -235.844696045f, 4215.1796875f, 0), v4c));
+            Vector4 expected = new Vector4(66.0149993896f, -235.844696045f, 4215.1796875f, 0);
+            Assert.IsTrue(compare(new Vector4(66.0149993896f, -235.844696045f, 4215.1796875f, 0), v4c), "Expected: " + Vector4ToString(expected) + "\n" + "Received: " + Vector4ToString(v4c));
         }
 
         [TestMethod]
@@ -155,8 +190,8 @@ namespace UnitTestProject
             Vector3 v3a = new Vector3(13.5f, -48.23f, 862);
             Vector3 v3b = new Vector3(5, 3.99f, -12);
             float dot3 = Vector3.DotProduct(v3a, v3b);
-
-            Assert.AreEqual(dot3, -10468.9375f, DEFAULT_TOLERANCE);
+            float expected = -10468.9375f;
+            Assert.AreEqual(dot3, -10468.9375f, DEFAULT_TOLERANCE, "Expected: " + expected + "\n" + "Received: " + dot3);
         }
 
         [TestMethod]
@@ -166,7 +201,8 @@ namespace UnitTestProject
             Vector4 v4b = new Vector4(5, 3.99f, -12, 1);
             float dot4 = Vector4.DotProduct(v4a, v4b);
 
-            Assert.AreEqual(dot4, -10468.9375f, DEFAULT_TOLERANCE);
+            float expected = -10468.9375f;
+            Assert.AreEqual(dot4, -10468.9375f, DEFAULT_TOLERANCE, "Expected: " + expected + "\n" + "Received: " + dot4);
         }
 
         [TestMethod]
@@ -175,8 +211,8 @@ namespace UnitTestProject
             Vector3 v3a = new Vector3(13.5f, -48.23f, 862);
             Vector3 v3b = new Vector3(5, 3.99f, -12);
             Vector3 v3c = Vector3.CrossProduct(v3a, v3b);
-
-            Assert.IsTrue(compare(v3c, new Vector3(-2860.62011719f, 4472.00000000f, 295.01498413f)));
+            Vector3 expected = new Vector3(-2860.62011719f, 4472.00000000f, 295.01498413f);
+            Assert.IsTrue(compare(v3c, new Vector3(-2860.62011719f, 4472.00000000f, 295.01498413f)), "Expected: " + Vector3ToString(expected) + "\n" + "Received: " + Vector3ToString(v3c));
         }
 
         [TestMethod]
@@ -185,44 +221,45 @@ namespace UnitTestProject
             Vector4 v4a = new Vector4(13.5f, -48.23f, 862, 0);
             Vector4 v4b = new Vector4(5, 3.99f, -12, 1);
             Vector4 v4c = Vector4.CrossProduct(v4a, v4b);
-
-            Assert.IsTrue(compare(v4c, new Vector4(-2860.62011719f, 4472.00000000f, 295.01498413f, 0)));
+            Vector4 expected = new Vector4(-2860.62011719f, 4472.00000000f, 295.01498413f, 0);
+            Assert.IsTrue(compare(v4c, new Vector4(-2860.62011719f, 4472.00000000f, 295.01498413f, 0)), "Expected: " + Vector4ToString(expected) + "\n" + "Received: " + Vector4ToString(v4c));
         }
 
         [TestMethod]
         public void Vector3Magnitude()
         {
             Vector3 v3a = new Vector3(13.5f, -48.23f, 862);
-            float mag3 = v3a.Magnitude;
-
-            Assert.AreEqual(mag3, 863.453735352f, DEFAULT_TOLERANCE);
+            float mag3 = v3a.GetMagnitude();
+            float expected = 863.453735352f;
+            Assert.AreEqual(mag3, 863.453735352f, DEFAULT_TOLERANCE, "Expected: " + expected + "\n" + "Received: " + mag3);
         }
 
         [TestMethod]
         public void Vector4Magnitude()
         {
             Vector4 v4a = new Vector4(13.5f, -48.23f, 862, 0);
-            float mag4 = v4a.Magnitude;
+            float mag4 = v4a.GetMagnitude();
 
-            Assert.AreEqual(mag4, 863.453735352f, DEFAULT_TOLERANCE);
+            float expected = 863.453735352f;
+            Assert.AreEqual(mag4, 863.453735352f, DEFAULT_TOLERANCE, "Expected: " + expected + "\n" + "Received: " + mag4);
         }
 
         [TestMethod]
         public void Vector3Normalise()
         {
-            Vector3 v3a = new Vector3(13.5f, -48.23f, 862);
-            v3a = Vector3.Normalize(v3a);
-
-            Assert.IsTrue(compare(v3a, new Vector3(0.0156349f, -0.0558571f, 0.998316f)));
+            Vector3 v3a = new Vector3(13.5f, -48.23f, 862f);
+            v3a.Normalize();
+            Vector3 expected = new Vector3(0.0156349f, -0.0558571f, 0.998316f);
+            Assert.IsTrue(compare(v3a, new Vector3(0.0156349f, -0.0558571f, 0.998316f)), "Expected: " + Vector3ToString(expected) + "\n" + "Received: " + Vector3ToString(v3a));
         }
 
         [TestMethod]
         public void Vector4Normalise()
         {
             Vector4 v4a = new Vector4(243, -48.23f, 862, 0);
-            v4a = Vector4.Normalize(v4a);
-
-            Assert.IsTrue(compare(v4a, new Vector4(0.270935f, -0.0537745f, 0.961094f, 0)));
+            v4a.Normalize();
+            Vector4 expected = new Vector4(0.270935f, -0.0537745f, 0.961094f, 0);
+            Assert.IsTrue(compare(v4a, new Vector4(0.270935f, -0.0537745f, 0.961094f, 0)), "Expected: " + Vector4ToString(expected) + "\n" + "Received: " + Vector4ToString(v4a));
         }
 
         [TestMethod]
@@ -231,8 +268,11 @@ namespace UnitTestProject
             Matrix4 m4a = new Matrix4();
             m4a = Matrix4.CreateRotationX(4.5f);
 
+            m4a = Transpose(m4a);
+
+            Matrix4 expected = new Matrix4(1, 0, 0, 0, 0, -0.210796f, -0.97753f, 0, 0, 0.97753f, -0.210796f, 0, 0, 0, 0, 1);
             Assert.IsTrue(compare(m4a,
-                new Matrix4(1, 0, 0, 0, 0, -0.210796f, -0.97753f, 0, 0, 0.97753f, -0.210796f, 0, 0, 0, 0, 1)));
+                new Matrix4(1, 0, 0, 0, 0, -0.210796f, -0.97753f, 0, 0, 0.97753f, -0.210796f, 0, 0, 0, 0, 1)), "Expected: " + Matrix4ToString(expected) + "\n" + "Received: " + Matrix4ToString(m4a));
         }
 
         [TestMethod]
@@ -241,8 +281,11 @@ namespace UnitTestProject
             Matrix4 m4b = new Matrix4();
             m4b = Matrix4.CreateRotationY(-2.6f);
 
+            m4b = Transpose(m4b);
+
+            Matrix4 expected = new Matrix4(-0.856889f, 0, 0.515501f, 0, 0, 1, 0, 0, -0.515501f, 0, -0.856889f, 0, 0, 0, 0, 1);
             Assert.IsTrue(compare(m4b,
-                new Matrix4(-0.856889f, 0, 0.515501f, 0, 0, 1, 0, 0, -0.515501f, 0, -0.856889f, 0, 0, 0, 0, 1)));
+                new Matrix4(-0.856889f, 0, 0.515501f, 0, 0, 1, 0, 0, -0.515501f, 0, -0.856889f, 0, 0, 0, 0, 1)), "Expected: " + Matrix4ToString(expected) + "\n" + "Received: " + Matrix4ToString(m4b));
         }
 
         [TestMethod]
@@ -251,8 +294,11 @@ namespace UnitTestProject
             Matrix3 m3c = new Matrix3();
             m3c = Matrix3.CreateRotation(9.62f);
 
+            m3c = Transpose(m3c);
+
+            Matrix3 expected = new Matrix3(-0.981005f, -0.193984f, 0, 0.193984f, -0.981005f, 0, 0, 0, 1);
             Assert.IsTrue(compare(m3c,
-                new Matrix3(-0.981005f, -0.193984f, 0, 0.193984f, -0.981005f, 0, 0, 0, 1)));
+                new Matrix3(-0.981005f, -0.193984f, 0, 0.193984f, -0.981005f, 0, 0, 0, 1)), "Expected: " + Matrix3ToString(expected) + "\n" + "Received: " + Matrix3ToString(m3c));
         }
 
         [TestMethod]
@@ -261,92 +307,111 @@ namespace UnitTestProject
             Matrix4 m4c = new Matrix4();
             m4c = Matrix4.CreateRotationZ(0.72f);
 
+            m4c = Transpose(m4c);
+
+            Matrix4 expected = new Matrix4(0.751806f, 0.659385f, 0, 0, -0.659385f, 0.751806f, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
             Assert.IsTrue(compare(m4c,
-                new Matrix4(0.751806f, 0.659385f, 0, 0, -0.659385f, 0.751806f, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)));
+                new Matrix4(0.751806f, 0.659385f, 0, 0, -0.659385f, 0.751806f, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)), "Expected: " + Matrix4ToString(expected) + "\n" + "Received: " + Matrix4ToString(m4c));
         }
 
         [TestMethod]
         public void Vector3MatrixTransform2()
         {
             Matrix3 m3c = new Matrix3();
-            m3c = Transpose(Matrix3.CreateRotation(9.62f));
+            m3c = Matrix3.CreateRotation(9.62f);
+
+            //m3c = Transpose(m3c);
 
             Vector3 v3a = new Vector3(13.5f, -48.23f, 862);
             Vector3 v3c = m3c * v3a;
 
-            Assert.IsTrue(compare(v3c,
-                new Vector3(-22.5994224548f, 44.6950683594f, 862)));
+            Vector3 expected = new Vector3(-22.599422f, 44.69507f, 862);
+
+            Assert.IsTrue(compare(v3c, expected), "Expected: " + Vector3ToString(expected) + "\n" + "Received: " + Vector3ToString(v3c));
         }
 
         [TestMethod]
         public void Vector4MatrixTransform()
         {
             Matrix4 m4b = new Matrix4();
-            m4b = Transpose(Matrix4.CreateRotationY(-2.6f));
+            m4b = Matrix4.CreateRotationY(-2.6f);
+
+            //m4b = Transpose(m4b);
 
             Vector4 v4a = new Vector4(13.5f, -48.23f, 862, 0);
             Vector4 v4b = m4b * v4a;
+            Vector4 expected = new Vector4(-455.930236816f, -48.2299995422f, -731.678771973f, 0);
 
             Assert.IsTrue(compare(v4b,
-                new Vector4(-455.930236816f, -48.2299995422f, -731.678771973f, 0)));
+                new Vector4(-455.930236816f, -48.2299995422f, -731.678771973f, 0)), "Expected: " + Vector4ToString(expected) + "\n" + "Received: " + Vector4ToString(v4b));
         }
 
         [TestMethod]
         public void Vector4MatrixTransform2()
         {
             Matrix4 m4c = new Matrix4();
-            m4c = Transpose(Matrix4.CreateRotationZ(0.72f));
+            m4c = Matrix4.CreateRotationZ(0.72f);
+
+            //m4c = Transpose(m4c);
 
             Vector4 v4a = new Vector4(13.5f, -48.23f, 862, 0);
             Vector4 v4b = m4c * v4a;
+            Vector4 expected = new Vector4(41.951499939f, -27.3578968048f, 862, 0);
 
             Assert.IsTrue(compare(v4b,
-                new Vector4(41.951499939f, -27.3578968048f, 862, 0)));
+                new Vector4(41.951499939f, -27.3578968048f, 862, 0)), "Expected: " + Vector4ToString(expected) + "\n" + "Received: " + Vector4ToString(v4b));
         }
 
         [TestMethod]
         public void Matrix3Multiply()
         {
             Matrix3 m3b = new Matrix3();
-            m3b = Matrix3.CreateTranslation(new Vector2(2,3));
+            m3b = Matrix3.CreateTranslation(2, 3);
 
             Matrix3 m3c = new Matrix3();
-            m3c = Matrix3.CreateTranslation(new Vector2(3, 15));
+            m3c = Matrix3.CreateTranslation(3, 15);
 
-            Matrix3 m4d = Transpose(m3b * m3c);
+            Matrix3 m4d = m3b * m3c;
+            m4d = Transpose(m4d);
+            Matrix3 expected = new Matrix3(1, 0, 0, 0, 1, 0, 5, 18, 1);
 
             Assert.IsTrue(compare(m4d,
-                new Matrix3(1, 0, 0, 0, 1, 0, 5, 18, 1)));
+                new Matrix3(1, 0, 0, 0, 1, 0, 5, 18, 1)), "Expected: \n" + Matrix3ToString(expected) + "\n" + "Received: \n" + Matrix3ToString(m4d));
         }
 
         [TestMethod]
         public void Matrix4Multiply()
         {
             Matrix4 m4b = new Matrix4();
-            m4b = Transpose(Matrix4.CreateRotationY(-2.6f));
+            m4b = Matrix4.CreateRotationY(-2.6f);
+            m4b = Transpose(m4b);
 
             Matrix4 m4c = new Matrix4();
-            m4c = Transpose(Matrix4.CreateRotationZ(0.72f));
+            m4c = Matrix4.CreateRotationZ(0.72f);
+            m4c = Transpose(m4c);
 
-            Matrix4 m4d = Transpose(m4c * m4b);
+            Matrix4 m4d = m4c * m4b;
 
-            Assert.IsTrue(compare(m4d,
-                new Matrix4(-0.644213855267f, -0.565019249916f, 0.515501439571f, 0, -0.659384667873f, 0.751805722713f, 0, 0, -0.387556940317f, -0.339913755655f, -0.856888711452f, 0, 0, 0, 0, 1)));
-        }                   //m11              m21                m31           m41    m12             m22             m32 m42 m13               m23                 m33          m34 m14 m24 m34 m44                 
+            Matrix4 expected = new Matrix4(-0.644213855267f, 0.659384668f, 0.3875569210f, 0, 0.5650192710f, 0.751805722713f, -0.3399137459f, 0, -0.51550144f, 0, -0.856888711452f, 0, 0, 0, 0, 1);
+            Assert.IsTrue(compare(m4d, expected), "Expected: \n" + Matrix4ToString(expected) + "\n" + "Received: \n" + Matrix4ToString(m4d));
+        }
 
         [TestMethod]
         public void Vector3MatrixTranslation()
         {
             // homogeneous point translation
-            Matrix3 m3b = Transpose(new Matrix3(1, 0, 0,
-                                      0, 1, 0,
-                                      55, 44, 1));
+            Matrix3 m3b = new Matrix3(1, 0, 0,
+                                        0, 1, 0,
+                                        55, 44, 1);
+
+            m3b = Transpose(m3b);
 
             Vector3 v3a = new Vector3(13.5f, -48.23f, 1);
 
             Vector3 v3b = m3b * v3a;
+            Vector3 expected = new Vector3(68.5f, -4.23f, 1);
 
-            Assert.IsTrue(compare(v3b, new Vector3(68.5f, -4.23f, 1)));
+            Assert.IsTrue(compare(v3b, new Vector3(68.5f, -4.23f, 1)), "Expected: " + Vector3ToString(expected) + "\n" + "Received: " + Vector3ToString(v3b));
         }
 
 
@@ -354,75 +419,86 @@ namespace UnitTestProject
         public void Vector4MatrixTranslation()
         {
             // homogeneous point translation
-            Matrix4 m4b = Transpose(new Matrix4(1, 0, 0, 0,
-                                      0, 1, 0, 0,
-                                      0, 0, 1, 0,
-                                      55, 44, 99, 1));
-            
+            Matrix4 m4b = new Matrix4(1, 0, 0, 0,
+                                        0, 1, 0, 0,
+                                        0, 0, 1, 0,
+                                        55, 44, 99, 1);
+            m4b = Transpose(m4b);
+
             Vector4 v4a = new Vector4(13.5f, -48.23f, -54, 1);
 
             Vector4 v4c = m4b * v4a;
-            Assert.IsTrue(compare(v4c, new Vector4(68.5f, -4.23f, 45, 1)));
+            Vector4 expected = new Vector4(68.5f, -4.23f, 45, 1);
+
+            Assert.IsTrue(compare(v4c, new Vector4(68.5f, -4.23f, 45, 1)), "Expected: " + Vector4ToString(expected) + "\n" + "Received: " + Vector4ToString(v4c));
         }
 
         [TestMethod]
         public void Vector4MatrixTranslation2()
         {
             // homogeneous point translation
-            Matrix4 m4c = new Matrix4();
-            m4c = Transpose(Matrix4.CreateRotationZ(2.2f));
-            m4c.m14 = 55; m4c.m24 = 44; m4c.m34 = 99; m4c.m44 = 1;
+            Matrix4 m4c = Matrix4.CreateRotationZ(2.2f);
+
+            //m4c = Transpose(m4c);
+            m4c.M03 = 55; m4c.M13 = 44; m4c.M23 = 99; m4c.M33 = 1;
 
             Vector4 v4a = new Vector4(13.5f, -48.23f, -54, 1);
 
             Vector4 v4c = m4c * v4a;
-            Assert.IsTrue(compare(v4c, new Vector4(86.0490112305f, 83.2981109619f, 45, 1)));
+            Vector4 expected = new Vector4(86.0490112305f, 83.2981109619f, 45, 1);
+            Assert.IsTrue(compare(v4c, new Vector4(86.0490112305f, 83.2981109619f, 45, 1)), "Expected: " + Vector4ToString(expected) + "\n" + "Received: " + Vector4ToString(v4c));
         }
-        
+
         [TestMethod]
         public void Vector3MatrixTranslation3()
         {
             // homogeneous point translation
-            Matrix3 m3b = Transpose(new Matrix3(1, 0, 0,
-                                      0, 1, 0,
-                                      55, 44, 1));
+            Matrix3 m3b = new Matrix3(1, 0, 0,
+                                        0, 1, 0,
+                                        55, 44, 1);
+
+            m3b = Transpose(m3b);
 
             Vector3 v3a = new Vector3(13.5f, -48.23f, 0);
 
             Vector3 v3b = m3b * v3a;
+            Vector3 expected = new Vector3(13.5f, -48.23f, 0);
 
-            Assert.IsTrue(compare(v3b, new Vector3(13.5f, -48.23f, 0)));
+            Assert.IsTrue(compare(v3b, new Vector3(13.5f, -48.23f, 0)), "Expected: " + Vector3ToString(expected) + "\n" + "Received: " + Vector3ToString(v3b));
         }
 
         [TestMethod]
         public void Vector4MatrixTranslation3()
         {
             // homogeneous point translation
-            Matrix4 m4b = Transpose(new Matrix4(1, 0, 0, 0,
-                                      0, 1, 0, 0,
-                                      0, 0, 1, 0,
-                                      55, 44, 99, 1));
+            Matrix4 m4b = new Matrix4(1, 0, 0, 0,
+                                        0, 1, 0, 0,
+                                        0, 0, 1, 0,
+                                        55, 44, 99, 1);
+
+            m4b = Transpose(m4b);
 
             Vector4 v4a = new Vector4(13.5f, -48.23f, -54, 0);
 
             Vector4 v4c = m4b * v4a;
-            Assert.IsTrue(compare(v4c, new Vector4(13.5f, -48.23f, -54, 0)));
+            Vector4 expected = new Vector4(13.5f, -48.23f, -54, 0);
+            Assert.IsTrue(compare(v4c, new Vector4(13.5f, -48.23f, -54, 0)), "Expected: " + Vector4ToString(expected) + "\n" + "Received: " + Vector4ToString(v4c));
         }
 
         [TestMethod]
         public void Vector4MatrixTranslation4()
         {
             // homogeneous point translation
-            Matrix4 m4c = new Matrix4();
-            m4c = Transpose(Matrix4.CreateRotationZ(2.2f));
-            m4c.m14 = 55; m4c.m24 = 44; m4c.m34 = 99; m4c.m44 = 1;
+            Matrix4 m4c = Matrix4.CreateRotationZ(2.2f);
+            //m4c = Transpose(m4c);
+            m4c.M03 = 55; m4c.M13 = 44; m4c.M23 = 99; m4c.M33 = 1;
 
             Vector4 v4a = new Vector4(13.5f, -48.23f, -54, 0);
 
             Vector4 v4c = m4c * v4a;
-            Assert.IsTrue(compare(v4c, new Vector4(31.0490131378f, 39.2981109619f, -54, 0)));
+            Vector4 expected = new Vector4(31.0490131378f, 39.2981109619f, -54, 0);
+            Assert.IsTrue(compare(v4c, new Vector4(31.0490131378f, 39.2981109619f, -54, 0)), "Expected: " + Vector4ToString(expected) + "\n" + "Received: " + Vector4ToString(v4c));
         }
 
-        
     }
 }
